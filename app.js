@@ -1,13 +1,40 @@
-let lat, lng;
+let lat, lng, imageData;
 
-async function initCamera()
-{
-
+async function initCamera() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    const video = document.getElementById('video');
+    video.srcObject = stream;
+ 
+    document.getElementById('cameraStatus').textContent = "Status: kamera aktywna";
+ 
+  } catch (err) {
+    console.error('Camera error:', err);
+  }
 }
+ 
+window.addEventListener('load', initCamera);
 
-async function capturePhoto()
-{
-
+async function capturePhoto() {
+  const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+  const video = document.getElementById('video');
+  video.srcObject = stream;
+ 
+  setTimeout(() => {
+    const canvas = document.getElementById('canvas');
+    const photo = document.getElementById('photo');
+ 
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext('2d').drawImage(video, 0, 0);
+ 
+    imageData = canvas.toDataURL('image/png');
+    photo.src = imageData;
+ 
+    stream.getTracks().forEach(track => track.stop());
+ 
+    getLocation();
+  }, 2000);
 }
 
 function getLocation() {
