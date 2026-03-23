@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zgłoszenia miejskie</title>
+
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Bootstrap (rwd)-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Leaflet (mapy) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <style>
+    #map {
+      height: 300px;
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    video, img {
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+
+<div class="container py-3">
+
+  <!-- Nagłówek -->
+  <div class="text-center mb-4">
+    <h2>Zgłoszenia miejskie</h2>
+    <p class="text-muted">
+      Aplikacja umożliwia zgłoszenie problemu infrastrukturalnego poprzez wykonanie zdjęcia,
+      zapis lokalizacji GPS oraz udostępnienie zgłoszenia.
+    </p>
+  </div>
+
+  <div class="row g-3">
+
+    <!-- Kamera -->
+    <div class="col-12 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5>Kamera</h5>
+
+          <video id="video" autoplay playsinline muted class="w-100"></video>
+
+          <button class="btn btn-primary w-100 mt-2" onclick="capturePhoto()">
+            Zrób zdjęcie
+          </button>
+
+          <small id="cameraStatus" class="text-muted d-block mt-2">
+            Status: oczekiwanie na dostęp do kamery
+          </small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Zdjęcie -->
+    <div class="col-12 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5>Podgląd zdjęcia</h5>
+
+          <canvas id="canvas" class="d-none"></canvas>
+          <img id="photo" class="img-fluid mt-2" />
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Lokalizacja -->
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5>Lokalizacja GPS</h5>
+
+          <p class="mb-1">
+            <strong>Szerokość (lat):</strong> <span id="lat">-</span>
+          </p>
+          <p>
+            <strong>Długość (lng):</strong> <span id="lng">-</span>
+          </p>
+
+          <small id="gpsStatus" class="text-muted">
+            Status: oczekiwanie na lokalizację
+          </small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mapa -->
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5>Mapa zgłoszenia</h5>
+          <div id="map"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Akcje -->
+    <div class="col-12">
+      <div class="d-grid gap-2">
+        <button class="btn btn-success" onclick="shareReport()">
+          Udostępnij zgłoszenie
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Leaflet (mapy) -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!-- Funkcje -->
+<script src="app.js"></script>
+
+</body>
+</html>
