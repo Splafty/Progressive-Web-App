@@ -29,6 +29,5 @@ Użytkownik przesyła po wejściu do aplikacji ma możliwość zrobienia zdjęci
     <td>225936</td>
   </tr>
 </table>
-Zdjęcie 
-![dziura](https://github.com/user-attachments/assets/3c4f3f8a-cea1-43b1-904a-b936726e5266)
+
 
