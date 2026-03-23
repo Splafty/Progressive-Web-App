@@ -30,4 +30,4 @@ Użytkownik przesyła po wejściu do aplikacji ma możliwość zrobienia zdjęci
   </tr>
 </table>
 
-
+![alt text](dziura.jpg)
